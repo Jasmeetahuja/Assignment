@@ -1,0 +1,2 @@
+create react app
+npm install react-infinite-loader --save

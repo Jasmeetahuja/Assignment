@@ -1,0 +1,58 @@
+Step-1>>>>>>First just create one component like this:
+
+import React, {Component} from 'react';
+
+const asyncComponent = (importComponent) => {
+    return class extends Component {
+        state = {
+            component: null
+        }
+
+        componentDidMount() {
+            importComponent()
+                .then(cmp => {
+                    this.setState({component: cmp.default});
+                });
+        }
+
+        render() {
+            const C = this.state.component;
+            return C ? <C {...this.props}/> : null;
+        }
+    }
+};
+
+export default asyncComponent;
+
+Step-2>>>>>> importComponent is a function, that simply returns a component import.
+
+const impFn = () => {
+    return import('./components/Card');
+}
+
+Step-3>>>>>> Create another functional component as an example and import previous component inside this.
+
+import React from 'react';
+
+const AsyncButton = asyncComponent(() => {
+    return import('../Button');
+});
+
+
+const container = () => {
+    return (
+        <div>
+            <h1>Here goes an async loaded button component</h1>
+            <AsyncButton/>
+        </div>
+    );
+};
+
+export default container;
+
+Step-4>>>>>> when the AsyncButton is mounted, it calls our importComponent function.
+             Until the import is done, the rendered DOM will be empty. 
+             When the missing component is loaded via a chunk file download, 
+             it will be added to the AsyncButton component’s state and the latter will re-render. 
+             Now, our async component will simply render the downloaded Button component with passed props.
+

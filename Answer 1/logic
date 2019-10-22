@@ -1,0 +1,7 @@
+Parse input, 
+Select the beneficiaryPayId,
+Iterate over the all input and compare with the parentBenePayId with the other, 
+If it matches add into the all hierarchy to the parent id , 
+Add business name, 
+And repeat
+So from this, we have a parent-child relationship between the BeneficiaryPayId & parentBenePayId.
