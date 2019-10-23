@@ -1,7 +1,6 @@
-Parse input, 
-Select the beneficiaryPayId,
-Iterate over the all input and compare with the parentBenePayId with the other, 
-If it matches add into the all hierarchy to the parent id , 
-Add business name, 
-And repeat
-So from this, we have a parent-child relationship between the BeneficiaryPayId & parentBenePayId.
+
+***We all know in React components receive props and state and return HTML. 
+When child components receive props from their parents, they either render or pass it to another child.
+
+In the given data, BeneficiaryPayId is parent and parentBenePayId is child.
+So we can do it with the HOC as per the output data.
